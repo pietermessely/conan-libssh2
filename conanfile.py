@@ -6,7 +6,7 @@ import os
 
 class Libssh2Conan(ConanFile):
     name = "libssh2"
-    version = "1.9.0_mod"
+    version = "1.9.0_mod2"
     description = "SSH2 modified library"
     url = "https://github.com/bincrafters/conan-libssh2"
     homepage = "https://libssh2.org"
@@ -53,7 +53,8 @@ class Libssh2Conan(ConanFile):
         if self.options.with_zlib:
             self.requires.add("zlib/1.2.11")
         if self.options.with_openssl:
-            self.requires.add("OpenSSL/latest_1.0.2x@conan/stable")
+            #self.requires.add("OpenSSL/latest_1.0.2x@conan/stable")
+            self.requires.add("openssl/1.1.1h")
 
 
     def build(self):
@@ -65,7 +66,7 @@ class Libssh2Conan(ConanFile):
         cmake.definitions['ENABLE_MAC_NONE'] = self.options.enable_mac_none
         if self.options.with_openssl:
             cmake.definitions['CRYPTO_BACKEND'] = 'OpenSSL'
-            cmake.definitions['OPENSSL_ROOT_DIR'] = self.deps_cpp_info['OpenSSL'].rootpath
+            #cmake.definitions['OPENSSL_ROOT_DIR'] = self.deps_cpp_info['OpenSSL'].rootpath
             cmake.definitions['OPENSSL_ADDITIONAL_LIBRARIES'] = 'dl'
         else:
             raise Exception("Crypto backend must be specified")
