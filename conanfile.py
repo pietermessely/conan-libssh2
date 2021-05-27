@@ -54,7 +54,8 @@ class Libssh2Conan(ConanFile):
             self.requires.add("zlib/1.2.11")
         if self.options.with_openssl:
             #self.requires.add("OpenSSL/latest_1.0.2x@conan/stable")
-            self.requires.add("openssl/1.1.1h")
+            #self.requires.add("openssl/1.1.1h")
+            self.requires.add("openssl/1.1.1k") #Had to install this first: conan install openssl/1.1.1k@ or simply add --build missing when calling this ...
 
 
     def build(self):
