@@ -47,6 +47,18 @@
 // Initial test function (only needs first 2 includes)
 int main()
 {
+    // To check whether it's larger than the current version
+    // const char* version = libssh2_version(LIBSSH2_VERSION_NUM);
+    
+    // To unconditionally get the current version
+    const char* version = libssh2_version(0);
+    if (!version) {
+      fprintf (stderr, "Runtime libssh2 version too old!");
+      return EXIT_FAILURE;
+    }
+    std::cout << "LibSSH2 version: " << version << std::endl;
+    
+    
 	LIBSSH2_SESSION* session = libssh2_session_init();
 	if(session)
 	{
