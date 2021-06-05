@@ -83,6 +83,7 @@ class Libssh2Conan(ConanFile):
     def package(self):
         self.copy("COPYING", dst="licenses", src=self.source_subfolder, keep_path=False)
         self.copy("*", dst="include", src=os.path.join(self.install_subfolder, "include"))
+        self.copy("libssh2_config.h", dst="include", src=os.path.join(self.source_subfolder, "src"))
         self.copy("*.dll", dst="bin", src=os.path.join(self.install_subfolder, "bin"), keep_path=False)
         self.copy("*.dylib", dst="lib", src=os.path.join(self.install_subfolder, "lib"), keep_path=False)
         # rhel installs libraries into lib64
